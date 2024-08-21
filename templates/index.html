@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<section class="py-1">
+    <div class="row mt-5">
+        <div class="col-lg-8 offset-lg-2">
+            <h3>THÔNG TIN SINH VIÊN</h3>
+            <hr>
+            <div class="row mb-4">
+                <div class="col-lg-4 mb-2">
+                    <a href="/addprsn" class="btn1 btn-success btn-lg btn-block"><b>THÊM SINH VIÊN</b></a>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <a href="/fr_page" class="btn1 btn-info btn-lg btn-block"><b>ĐIỂM DANH KHUÔN MẶT</b></a>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <a href="/report" class="btn1 btn-primary btn-lg btn-block"><b>BÁO CÁO ĐIỂM DANH</b></a>
+                </div>
+            </div>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>ID Sinh Viên</th>
+                    <th>Tên</th>
+                    <th>Lớp</th>
+                    <th>Giới Tính</th>
+                    <th>Ngày Nhập Học</th>
+                    <th>Chỉnh Sửa</th>
+                    <th>Xóa</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>
+                        <td>{{ item[4] }}</td>
+                        <td><a href="/edit_student/{{ item[0] }}" class="btn_edit">Chỉnh Sửa</a></td>
+                        <td>
+                            <form action="/delete_student/{{ item[0] }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn1 btn-danger"
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa sinh viên này không?');">Xóa
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

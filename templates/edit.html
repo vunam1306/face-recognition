@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<section class="py-1">
+    <div class="row mt-5">
+        <div class="col-lg-8 offset-lg-2">
+            <h3>CHỈNH SỬA THÔNG TIN SINH VIÊN</h3>
+            <hr>
+            <form action="/edit_student/{{ student_data[0] }}" method="POST">
+                <div class="form-group">
+                    <label for="txtName">Tên:</label>
+                    <input type="text" class="form-control" id="txtName" name="txtName" value="{{ student_data[1] }}">
+                </div>
+                <div class="form-group">
+                    <label for="txtClass">Lớp:</label>
+                    <select class="form-control" id="txtClass" name="txtClass">
+                        <option value="SOFTWARE" {% if student_data[2] == 'SOFTWARE' %} selected {% endif %}>SOFTWARE
+                        </option>
+                        <option value="HARDWARE" {% if student_data[2] == 'HARDWARE' %} selected {% endif %}>HARDWARE
+                        </option>
+                        <option value="ELECTRICAL" {% if student_data[2] == 'ELECTRICAL' %} selected {% endif %}>
+                            ELECTRICAL
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="txtGender">Giới tính:</label>
+                    <select class="form-control" id="txtGender" name="txtGender">
+                        <option value="nam" {% if student_data[3] == 'nam' %} selected {% endif %}>Nam</option>
+                        <option value="nu" {% if student_data[3] == 'nu' %} selected {% endif %}>Nữ</option>
+                        <option value="other" {% if student_data[3] == 'other' %} selected {% endif %}>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <a href="/" class="btn btn-warning">Trở Lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

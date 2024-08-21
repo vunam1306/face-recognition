@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <section class="py-1">
+        <div class="container mt-5">
+            <h3>Lưu Dữ Liệu vào File Excel</h3>
+            <form action="/save_file" method="post" class="mb-4">
+                <div class="form-group">
+                    <label for="filename">Tên File:</label>
+                    <input type="text" class="form-control" id="filename" name="filename" required>
+                </div>
+                <div class="form-group">
+                    <label for="save_path">Đường dẫn lưu:</label>
+                    <input type="text" class="form-control" id="save_path" name="save_path" required>
+                </div>
+                <input type="hidden" name="data" value="{{ data }}">
+                <button type="submit" class="btn btn-primary">Lưu File</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">3 Musketeers</span>
+        </div>
+    </footer>
+</body>
+</html>
